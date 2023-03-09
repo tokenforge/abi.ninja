@@ -42,8 +42,7 @@ build-dev:
         IMAGE_APP: ${DOCKER_IMG_NAME}-dev:${APP_VERSION}
     only:
         #example develop or develop/0.2.1 or develop/legal-documents will match
-        - /^develop(\/([0-9\.]|[a-z\-])*$|$)/
-
+        - master
 build-mr:
     extends: .build
     stage: test
