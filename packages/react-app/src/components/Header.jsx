@@ -13,7 +13,10 @@ export default function Header({ link, title, setOpenMenu, openMenu, subTitle, .
 
       <div className="header-logo">
         <Link to="/" className="logo-link">
-          <img width={50} src={Logo} alt="logo" />
+          <div>
+            <img id="abi-nina-logo" width={50} src={Logo} alt="ABI-Ninja logo" style={{ width: 25 }} />
+            <img id="tokenforge-logo" src="/Tokenforge-blue-claim.png" alt="TokenForge logo" style={{ width: 125 }} />
+          </div>
           <span className="logo-abi">
             ABI <span className="logo-ninja">Ninja</span>
           </span>

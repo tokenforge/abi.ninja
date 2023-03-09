@@ -124,12 +124,16 @@ function Homepage({
     <div className="index-container">
       <div className="search-container">
         <div className="search-content">
-          <img src="/logo_inv.svg" alt="logo" />
+          <div>
+          <img src="/logo_inv-svg.png" alt="AB Ninja Logo" style={{ width: 25, marginRight: 7 }} />
+          +
+          <img src="/Tokenforge-blue-claim.png" alt="TokenForge logo" />
+          </div>
           <div className="title">
             <h1>ABI Ninja</h1>
           </div>
 
-          <h3>Interact with any contract on Ethereum</h3>
+          <h3>Interact with any contract on TokenForge TestNet and other EVM compatible chains</h3>
           <NetworkSelector
             selectedNetwork={selectedNetwork}
             onUpdateNetwork={val => onUpdateNetwork(val)}
