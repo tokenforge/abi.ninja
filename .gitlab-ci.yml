@@ -1,0 +1,94 @@
+variables:
+  DOCKER_DRIVER: overlay2
+  APP_NAME: ninja
+  DOCKER_IMG_NAME: tokenforge/${APP_NAME}
+  APP_VERSION: ${CI_COMMIT_SHORT_SHA}
+  LATEST_TAG: latest
+  IMAGE_LATEST: ${DOCKER_IMG_NAME}:${LATEST_TAG}
+
+stages:
+    - test
+    - build
+    - deploy
+
+.build:
+    image: docker:stable
+    services:
+        - docker:dind
+    stage: build
+    tags: [ docker ]
+    variables:
+        IMAGE_APP: ""
+    before_script:
+        - apk add --no-cache git coreutils
+        - echo "${DOCKER_REGISTRY_PASSWORD}" | docker login --username ${DOCKER_REGISTRY_USER} --password-stdin
+    script:
+        - echo VUE_APP_COMMIT_HASH=${APP_VERSION} >> ${ENV_FILE}
+        - docker pull ${IMAGE_LATEST} || true
+
+        - docker build --cache-from ${IMAGE_LATEST} -t ${IMAGE_APP} .
+        - docker tag ${IMAGE_APP} ${IMAGE_LATEST}
+
+        - docker push ${IMAGE_APP}
+        - docker push ${IMAGE_LATEST}
+
+        - docker rmi -f ${IMAGE_APP}
+        - docker rmi -f ${IMAGE_LATEST} || true
+
+        - echo ${IMAGE_APP}
+  
+build-dev:
+    extends: .build
+    variables:
+        IMAGE_APP: ${DOCKER_IMG_NAME}-dev:${APP_VERSION}
+    only:
+        #example develop or develop/0.2.1 or develop/legal-documents will match
+        - /^develop(\/([0-9\.]|[a-z\-])*$|$)/
+
+build-mr:
+    extends: .build
+    stage: test
+    variables:
+        IMAGE_APP: ${DOCKER_IMG_NAME}-mrtest:mr-test
+        ENV_FILE: ${DEV_MAN_ENV_FILE}
+
+    only:
+        - merge_requests
+
+deploy-dev:
+    image: alpine:latest
+    stage: deploy
+    variables:
+        IMAGE_APP_DEV: ${DOCKER_IMG_NAME}-dev:${APP_VERSION}
+    before_script:
+        - apk add --no-cache git curl bash
+        - curl -s "https://raw.githubusercontent.com/kubernetes-sigs/kustomize/master/hack/install_kustomize.sh"  | bash
+        - mv kustomize /usr/local/bin/
+        - git clone https://${CI_PUSH_USER}:${CI_PUSH_TOKEN}@gitlab.com/tokenforge-gmbh/infrastructure/gitops/argocd.git
+        - cd argocd
+        - git config --global user.email "${GITLAB_USER_EMAIL}"
+        - git config --global user.name "${GITLAB_USER_NAME}"
+    only:
+        - main
+    script:
+        - cd ninja/dev/dev-ninja
+        - kustomize edit set image imageplaceholder-ninja=${IMAGE_APP_DEV}
+        - cat kustomization.yaml
+        - git add kustomization.yaml
+        - git commit -m 'updated images for ninja'
+        - git push origin main
+
+.build-release:
+    extends: .build
+    only:
+        #example develop or develop/0.2.1 or develop/legal-documents will match
+        - /^release(\/([0-9\.]|[a-z\-])*$|$)/
+    script:
+        - export RELEASE_TAG="$(echo ${CI_COMMIT_BRANCH} | awk -F "/" '{ print $2}')-${APP_VERSION}"
+        - export IMAGE_APP=${DOCKER_IMG_NAME}-${ENV_NAME}:${RELEASE_TAG}
+        - !reference [ .build, script ]
+
+build-release:
+    extends: .build-release
+    variables:
+        ENV_NAME: release
