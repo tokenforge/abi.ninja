@@ -1,7 +1,7 @@
 export const RPC_POLL_TIME = 30000;
 
 // MY INFURA_ID, SWAP IN YOURS FROM https://infura.io/dashboard/ethereum
-export const INFURA_ID = process.env.REACT_APP_INFURA_KEY ?? "460f40a260564ac4a4f4b3fffb032dad";
+export const INFURA_ID = process.env.REACT_APP_INFURA_KEY ?? "3ca800cc7fb343c3b59d99b549a9b108";
 
 const ETHERSCAN_API_KEY = process.env.REACT_APP_ETHERSCAN_API_KEY;
 const POLYGONSCAN_API_KEY = process.env.REACT_APP_POLYGONSCAN_API_KEY;
@@ -9,7 +9,7 @@ const POLYGONSCAN_API_KEY = process.env.REACT_APP_POLYGONSCAN_API_KEY;
 // BLOCKNATIVE ID FOR Notify.js:
 export const BLOCKNATIVE_DAPPID = "0b58206a-f3c0-4701-a62f-73c7243e8c77";
 
-export const ALCHEMY_KEY = "oKxs-03sij-U_N0iOlrSsZFr29-IqbuF";
+export const ALCHEMY_KEY = "GhwEtOQ3nXQ78KKeCJzTuPxA7zPMfnSA";
 
 export const NETWORKS = {
   localhost: {
@@ -18,6 +18,16 @@ export const NETWORKS = {
     chainId: 31337,
     blockExplorer: "",
     rpcUrl: "http://127.0.0.1:8545/",
+  },
+  tokenForgeTestNet: {
+    name: "tokenForgeTestNet",
+    color: "#0975F6",
+    chainId: 67444,
+    faucet: "",
+    blockExplorer: "https://goerli.etherscan.io/",
+    rpcUrl: `https://testnet.rpc.token-forge.io`,
+    etherscanEndpoint: "https://testnet.token-forge.io",
+    apiKey: ETHERSCAN_API_KEY,
   },
   mainnet: {
     name: "mainnet",
