@@ -2,8 +2,6 @@ server {
     listen       8080;
     listen  [::]:8080;
     server_name  localhost;
-    include mime.types;
-
 
     #access_log  /var/log/nginx/host.access.log  main;
 
