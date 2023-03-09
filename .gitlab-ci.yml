@@ -23,7 +23,6 @@ stages:
         - apk add --no-cache git coreutils
         - echo "${DOCKER_REGISTRY_PASSWORD}" | docker login --username ${DOCKER_REGISTRY_USER} --password-stdin
     script:
-        - echo VUE_APP_COMMIT_HASH=${APP_VERSION} >> ${ENV_FILE}
         - docker pull ${IMAGE_LATEST} || true
 
         - docker build --cache-from ${IMAGE_LATEST} -t ${IMAGE_APP} .
