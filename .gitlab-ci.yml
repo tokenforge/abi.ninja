@@ -67,7 +67,7 @@ deploy-dev:
         - git config --global user.email "${GITLAB_USER_EMAIL}"
         - git config --global user.name "${GITLAB_USER_NAME}"
     only:
-        - main
+        - master
     script:
         - cd ninja/dev/dev-ninja
         - kustomize edit set image imageplaceholder-ninja=${IMAGE_APP_DEV}
