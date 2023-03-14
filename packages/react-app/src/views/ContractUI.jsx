@@ -95,7 +95,7 @@ function ContractUI({
     // Still loading.
     return (
       <div className="contract-loading-spinner center">
-        <Spin indicator={<LoadingOutlined style={{ fontSize: 35, color: "#551D98" }} spin />} />
+        <Spin indicator={<LoadingOutlined style={{ fontSize: 35, color: "#FF9A61" }} spin />} />
       </div>
     );
   }
