@@ -130,15 +130,19 @@ function Homepage({
           <img src="/Tokenforge-blue-claim.png" alt="TokenForge logo" />
           </div>
           <div className="title">
-            <h1>ABI Ninja</h1>
+            <h1>Execute.</h1>
           </div>
 
-          <h3>Interact with any contract on TokenForge TestNet and other EVM compatible chains</h3>
-          <NetworkSelector
-            selectedNetwork={selectedNetwork}
-            onUpdateNetwork={val => onUpdateNetwork(val)}
-            networks={NETWORKS}
-          />
+          <h3>Interact with any SmartContract on TokenForge Chain and other EVM compatible chains</h3>
+
+          <div style={{ alignItems: 'start' }} class="ant-tabs ant-tabs-top ant-tabs-centered search-tabs network-selector">
+            <span style={{alignItems: 'start'}}>&nbsp;Blockchain / Network</span>
+            <NetworkSelector
+              selectedNetwork={selectedNetwork}
+              onUpdateNetwork={val => onUpdateNetwork(val)}
+              networks={NETWORKS}
+            />
+          </div>
           <Tabs
             className="search-tabs"
             defaultActiveKey="0"
@@ -157,7 +161,7 @@ function Homepage({
                 className="address-input"
                 onChange={setVerifiedContractAddress}
               />
-              {selectedNetwork.name === "mainnet" && (
+              {false && selectedNetwork.name === "mainnet" && (
                 <div className="quick-access-container">
                   <h5>Quick Access</h5>
                   <div className="contract-link-container">
