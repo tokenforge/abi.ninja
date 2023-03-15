@@ -9,6 +9,7 @@ import { loadContractRaw } from "../helpers/loadContractRaw";
 import { NetworkSelector } from "../components/Core/networkSelector";
 import { MainInput } from "../components/Core/mainInput";
 import { AbiFooter } from "../components/Core/footer";
+import { TokenHeader, TokenFooter } from "../components";
 
 const quickAccessContracts = [
   {
@@ -122,6 +123,7 @@ function Homepage({
 
   return (
     <div className="index-container">
+      <TokenHeader />
       <div className="search-container">
         <div className="search-content">
           <div>
@@ -204,6 +206,7 @@ function Homepage({
         </div>
         <AbiFooter></AbiFooter>
       </div>
+      <TokenFooter />
     </div>
   );
 }

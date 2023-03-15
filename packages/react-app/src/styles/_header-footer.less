@@ -81,7 +81,6 @@
 }
 
 .footer-items {
-  
   border-top: 1px solid rgba(0, 0, 0, 0.85);
   padding-top: 15px;
   font-style: normal;
@@ -101,4 +100,134 @@
   }
 
   color: @dark-color;
+}
+
+.token-header {
+    width: 100%;
+    height: 90px;
+    padding: 0 10px 0 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: transparent;
+    background-image: linear-gradient(320deg, #2A4277 66%, #1F73B7 100%);
+    margin-bottom: 75px;
+
+    img {
+        width: 90px;
+
+        @media (min-width: 768px) {
+            width: 205px;
+            margin-left: 20%;
+        }
+    }
+}
+
+.token-footer {
+    width: 100%;
+    max-height: 900px;
+    background-color: transparent;
+    background-image: linear-gradient(320deg, #2A4277 63%, #1F73B7 100%);
+    margin-top: 75px;
+    padding: 100px 50px;
+    display: flex;
+    justify-content: center;
+
+    a {
+        color: white;
+        margin-top: 5px;
+    }
+
+    @media (min-width: 768px) {
+        height: 500px;
+    }
+
+    .token-footer-row {
+        display: flex;
+        justify-content: space-between;
+        flex-direction: column;
+
+        @media (min-width: 768px) {
+            flex-direction: row;
+        }
+    }
+
+    .token-footer-rights {
+        width: 250px;
+        text-align: right;
+        margin-top: 50px;
+        font-size: 10px;
+
+        @media (min-width: 768px) {
+            align-self: self-end;
+            font-size: 11px;
+        }
+    }
+
+    .token-footer-icons {
+        margin-top: 55px;
+        display: flex;
+        justify-content: space-evenly;
+        width: 100%;
+
+        img {
+            width: 65px;
+            margin-right: 25px;
+        }
+
+        @media (min-width: 768px) {
+            margin-top: 0;
+            justify-content: flex-start;
+        }
+    }
+
+    .token-footer-description {
+        margin-top: 25px;
+        font-size: 17px;
+        max-width: 400px;
+        min-width: 300px;
+    }
+
+    .token-footer-columns {
+        display: flex;
+        font-size: 17px;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        margin-top: 25px;
+
+        @media (min-width: 768px) {
+            flex-wrap: unset;
+            margin-top: 0;
+            justify-content: flex-end;
+        }
+    }
+
+    .token-footer-column {
+        display: flex;
+        flex-direction: column;
+        width: 50%;
+        margin-top: 20px;
+
+        @media (min-width: 768px) {
+            margin-left: 70px;
+            width: auto;
+        }
+    }
+
+    .token-footer-cell {
+        margin-top: 5px;
+    }
+
+    .token-footer-columns-header {
+        font-size: 20px;
+        font-weight: 900;
+    }
+
+    .token-footer-logo {
+        width: 120px;
+
+        @media (min-width: 768px) {
+            width: 205px;
+        }
+    }
 }
