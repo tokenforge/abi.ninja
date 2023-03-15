@@ -2,6 +2,7 @@ import { CloseOutlined, MenuOutlined } from "@ant-design/icons";
 import React from "react";
 import { Link } from "react-router-dom";
 import Logo from "../assets/logo_inv-svg.png";
+
 export default function Header({ link, title, setOpenMenu, openMenu, subTitle, ...props }) {
   return (
     <header className={"header"}>
