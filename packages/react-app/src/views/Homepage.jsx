@@ -138,7 +138,7 @@ function Homepage({
           <h3>Interact with any SmartContract on TokenForge Chain and other EVM compatible chains</h3>
 
           <div style={{ alignItems: 'start' }} class="ant-tabs ant-tabs-top ant-tabs-centered search-tabs network-selector">
-            <span style={{alignItems: 'start'}}>&nbsp;Blockchain / Network</span>
+            <span style={{alignItems: 'start'}}>Select Box for Blokchain</span>
             <NetworkSelector
               selectedNetwork={selectedNetwork}
               onUpdateNetwork={val => onUpdateNetwork(val)}
